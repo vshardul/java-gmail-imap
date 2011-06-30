@@ -8,7 +8,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>java-gmail-imap-temp</name>
+    <name>java-gmail-imap</name>
     <url>http://code.google.com/p/java-gmail-imap</url>
 
     <repositories>
