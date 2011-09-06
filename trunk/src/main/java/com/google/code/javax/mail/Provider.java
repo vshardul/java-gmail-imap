@@ -124,7 +124,7 @@ public class Provider {
 
     /** Overrides Object.toString() */
     public String toString() {
-	String s = "javax.mail.Provider[" + type + "," +
+	String s = "com.google.code.javax.mail.Provider[" + type + "," +
 		    protocol + "," + className;
 
 	if (vendor != null)
