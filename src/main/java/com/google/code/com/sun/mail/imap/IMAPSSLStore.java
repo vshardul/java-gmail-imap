@@ -40,7 +40,10 @@
 
 package com.google.code.com.sun.mail.imap;
 
-import com.google.code.javax.mail.*;
+import com.google.code.javax.mail.Session;
+import com.google.code.javax.mail.URLName;
+
+
 
 /**
  * This class provides access to an IMAP message store over SSL. <p>
