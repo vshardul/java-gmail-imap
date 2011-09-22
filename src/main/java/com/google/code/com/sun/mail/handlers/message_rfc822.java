@@ -56,8 +56,8 @@ import com.google.code.javax.mail.internet.*;
 public class message_rfc822 implements DataContentHandler {
 
     ActivationDataFlavor ourDataFlavor = new ActivationDataFlavor(
-	javax.mail.Message.class,
-	"message/rfc822", 
+	Message.class,
+	"message/rfc822",
 	"Message");
 
     /**
@@ -82,7 +82,7 @@ public class message_rfc822 implements DataContentHandler {
 	else
 	    return null;
     }
-    
+
     /**
      * Return the content.
      */
@@ -106,13 +106,13 @@ public class message_rfc822 implements DataContentHandler {
 		    "message/rfc822 DataContentHandler: " + me.toString());
 	}
     }
-    
+
     /**
      * construct an object from a byte stream
      * (similar semantically to previous method, we are deciding
      *  which one to support)
      */
-    public void writeTo(Object obj, String mimeType, OutputStream os) 
+    public void writeTo(Object obj, String mimeType, OutputStream os)
 			throws IOException {
 	// if the object is a message, we know how to write that out
 	if (obj instanceof Message) {
@@ -122,7 +122,7 @@ public class message_rfc822 implements DataContentHandler {
 	    } catch (MessagingException me) {
 		throw new IOException(me.toString());
 	    }
-	    
+
 	} else {
 	    throw new IOException("unsupported object");
 	}
