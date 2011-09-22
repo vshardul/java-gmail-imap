@@ -5,7 +5,7 @@
 
     <groupId>com.google.code</groupId>
     <artifactId>java-gmail-imap</artifactId>
-    <version>1.4.4-gm-ext</version>
+    <version>1.4.4-gm-ext-0.1</version>
     <packaging>jar</packaging>
 
     <name>java-gmail-imap</name>
@@ -40,7 +40,7 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>java-gmail-imap</finalName>
+        <finalName>${project.artifactId}-${project.version}</finalName>
     </build>    
     
 </project>
