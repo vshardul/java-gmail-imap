@@ -153,7 +153,7 @@ public class POP3Store extends Store {
 		    messageClass = Class.forName(s);
 		}
 
-		Class[] c = {javax.mail.Folder.class, int.class};
+		Class[] c = {Folder.class, int.class};
 		messageConstructor = messageClass.getConstructor(c);
 	    } catch (Exception ex) {
 		if (debug)
@@ -184,7 +184,7 @@ public class POP3Store extends Store {
 
     protected synchronized boolean protocolConnect(String host, int portNum,
 		String user, String passwd) throws MessagingException {
-		    
+
 	// check for non-null values of host, password, user
 	if (host == null || passwd == null || user == null)
 	    return false;
@@ -204,9 +204,9 @@ public class POP3Store extends Store {
 	this.passwd = passwd;
 	try {
 	    port = getPort(null);
-	} catch (EOFException eex) { 
+	} catch (EOFException eex) {
 		throw new AuthenticationFailedException(eex.getMessage());
-	} catch (IOException ioex) { 
+	} catch (IOException ioex) {
 	    throw new MessagingException("Connect failed", ioex);
 	}
 
