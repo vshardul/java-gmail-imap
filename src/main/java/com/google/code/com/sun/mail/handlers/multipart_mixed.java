@@ -49,7 +49,7 @@ import com.google.code.javax.mail.internet.*;
 
 public class multipart_mixed implements DataContentHandler {
     private ActivationDataFlavor myDF = new ActivationDataFlavor(
-	    MimeMultipart.class,
+	    com.google.code.javax.mail.internet.MimeMultipart.class,
 	    "multipart/mixed",
 	    "Multipart");
 
@@ -84,7 +84,7 @@ public class multipart_mixed implements DataContentHandler {
      */
     public Object getContent(DataSource ds) throws IOException {
 	try {
-	    return new MimeMultipart(ds);
+	    return new com.google.code.javax.mail.internet.MimeMultipart(ds);
 	} catch (MessagingException e) {
 	    IOException ioex =
 		new IOException("Exception while constructing MimeMultipart");
@@ -98,9 +98,9 @@ public class multipart_mixed implements DataContentHandler {
      */
     public void writeTo(Object obj, String mimeType, OutputStream os)
 			throws IOException {
-	if (obj instanceof MimeMultipart) {
+	if (obj instanceof com.google.code.javax.mail.internet.MimeMultipart) {
 	    try {
-		((MimeMultipart)obj).writeTo(os);
+		((com.google.code.javax.mail.internet.MimeMultipart)obj).writeTo(os);
 	    } catch (MessagingException e) {
 		throw new IOException(e.toString());
 	    }

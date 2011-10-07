@@ -50,7 +50,7 @@ import com.google.code.com.sun.mail.util.*;
  * This is a utility class that provides various MIME related
  * functionality. <p>
  *
- * There are a set of methods to encode and decode MIME headers as 
+ * There are a set of methods to encode and decode MIME headers as
  * per RFC 2047.  Note that, in general, these methods are
  * <strong>not</strong> needed when using methods such as
  * <code>setSubject</code> and <code>setRecipients</code>; JavaMail
@@ -74,18 +74,18 @@ import com.google.code.com.sun.mail.util.*;
  * the String into another charset and then do the transfer-encoding.
  * <p>
  * Note that to get the actual bytes of a mail-safe String (say,
- * for sending over SMTP), one must do 
+ * for sending over SMTP), one must do
  * <p><blockquote><pre>
  *
- *	byte[] bytes = string.getBytes("iso-8859-1");	
+ *	byte[] bytes = string.getBytes("iso-8859-1");
  *
  * </pre></blockquote><p>
- * 
+ *
  * The <code>setHeader</code> and <code>addHeader</code> methods
  * on MimeMessage and MimeBodyPart assume that the given header values
  * are Unicode strings that contain only US-ASCII characters. Hence
  * the callers of those methods must insure that the values they pass
- * do not contain non US-ASCII characters. The methods in this class 
+ * do not contain non US-ASCII characters. The methods in this class
  * help do this. <p>
  *
  * The <code>getHeader</code> family of methods on MimeMessage and
@@ -186,7 +186,7 @@ public class MimeUtility {
      * @param	ds	DataSource
      * @return		the encoding. This is either "7bit",
      *			"quoted-printable" or "base64"
-     */ 
+     */
     public static String getEncoding(DataSource ds) {
 	ContentType cType = null;
 	InputStream is = null;
@@ -290,7 +290,7 @@ public class MimeUtility {
 	    } catch (IOException ex) { }	// ignore it
 	    if (aos.getAscii() == ALL_ASCII) // all ascii
 		encoding = "7bit";
-	    else // found atleast one non-ascii character, use b64 
+	    else // found atleast one non-ascii character, use b64
 		encoding = "base64";
 	}
 
@@ -336,13 +336,13 @@ public class MimeUtility {
     }
 
     /**
-     * Wrap an encoder around the given output stream. 
-     * All the encodings defined in RFC 2045 are supported here. 
+     * Wrap an encoder around the given output stream.
+     * All the encodings defined in RFC 2045 are supported here.
      * They include "base64", "quoted-printable", "7bit", "8bit" and
      * "binary". In addition, "uuencode" is also supported.
      *
      * @param	os		output stream
-     * @param	encoding	the encoding of the stream. 
+     * @param	encoding	the encoding of the stream.
      * @return			output stream that applies the
      *				specified encoding.
      * @exception MessagingException	if the encoding is unknown
@@ -412,11 +412,11 @@ public class MimeUtility {
      * characters. If the string contains only US-ASCII characters,
      * it is returned as-is.  If the string contains non US-ASCII
      * characters, it is first character-encoded using the platform's
-     * default charset, then transfer-encoded using either the B or 
-     * Q encoding. The resulting bytes are then returned as a Unicode 
+     * default charset, then transfer-encoded using either the B or
+     * Q encoding. The resulting bytes are then returned as a Unicode
      * string containing only ASCII  characters. <p>
      *
-     * Note that this method should be used to encode only 
+     * Note that this method should be used to encode only
      * "unstructured" RFC 822 headers. <p>
      *
      * Example of usage:
@@ -425,7 +425,7 @@ public class MimeUtility {
      *  MimePart part = ...
      *  String rawvalue = "FooBar Mailer, Japanese version 1.1"
      *  try {
-     *    // If we know for sure that rawvalue contains only US-ASCII 
+     *    // If we know for sure that rawvalue contains only US-ASCII
      *    // characters, we can skip the encoding part
      *    part.setHeader("X-mailer", MimeUtility.encodeText(rawvalue));
      *  } catch (UnsupportedEncodingException e) {
@@ -435,7 +435,7 @@ public class MimeUtility {
      *  }
      *
      * </pre></blockquote><p>
-     * 
+     *
      * @param	text	Unicode string
      * @return	Unicode string containing only US-ASCII characters
      * @exception UnsupportedEncodingException if the encoding fails
@@ -454,12 +454,12 @@ public class MimeUtility {
      * it is returned as-is.  If the string contains non US-ASCII
      * characters, it is first character-encoded using the specified
      * charset, then transfer-encoded using either the B or Q encoding.
-     * The resulting bytes are then returned as a Unicode string 
+     * The resulting bytes are then returned as a Unicode string
      * containing only ASCII characters. <p>
      *
-     * Note that this method should be used to encode only 
-     * "unstructured" RFC 822 headers. 
-     * 
+     * Note that this method should be used to encode only
+     * "unstructured" RFC 822 headers.
+     *
      * @param	text	the header value
      * @param	charset	the charset. If this parameter is null, the
      *		platform's default chatset is used.
@@ -522,9 +522,9 @@ public class MimeUtility {
 	 * First, lets do a quick run thru the string and check
 	 * whether the sequence "=?"  exists at all. If none exists,
 	 * we know there are no encoded-words in here and we can just
-	 * return the string as-is, without suffering thru the later 
-	 * decoding logic. 
-	 * This handles the most common case of unencoded headers 
+	 * return the string as-is, without suffering thru the later
+	 * decoding logic.
+	 * This handles the most common case of unencoded headers
 	 * efficiently.
 	 */
 	if (etext.indexOf("=?") == -1)
@@ -606,20 +606,20 @@ public class MimeUtility {
      * characters. If the string contains only US-ASCII characters,
      * it is returned as-is.  If the string contains non US-ASCII
      * characters, it is first character-encoded using the platform's
-     * default charset, then transfer-encoded using either the B or 
-     * Q encoding. The resulting bytes are then returned as a Unicode 
+     * default charset, then transfer-encoded using either the B or
+     * Q encoding. The resulting bytes are then returned as a Unicode
      * string containing only ASCII  characters. <p>
-     * 
+     *
      * This method is meant to be used when creating RFC 822 "phrases".
      * The InternetAddress class, for example, uses this to encode
      * it's 'phrase' component.
      *
      * @param	word	Unicode string
-     * @return	Array of Unicode strings containing only US-ASCII 
+     * @return	Array of Unicode strings containing only US-ASCII
      *		characters.
      * @exception UnsupportedEncodingException if the encoding fails
      */
-    public static String encodeWord(String word) 
+    public static String encodeWord(String word)
 			throws UnsupportedEncodingException {
 	return encodeWord(word, null, null);
     }
@@ -633,9 +633,9 @@ public class MimeUtility {
      * it is returned as-is.  If the string contains non US-ASCII
      * characters, it is first character-encoded using the specified
      * charset, then transfer-encoded using either the B or Q encoding.
-     * The resulting bytes are then returned as a Unicode string 
+     * The resulting bytes are then returned as a Unicode string
      * containing only ASCII characters. <p>
-     * 
+     *
      * @param	word	Unicode string
      * @param	charset	the MIME charset
      * @param	encoding the encoding to be used. Currently supported
@@ -646,7 +646,7 @@ public class MimeUtility {
      * @return	Unicode string containing only US-ASCII characters
      * @exception UnsupportedEncodingException if the encoding fails
      */
-    public static String encodeWord(String word, String charset, 
+    public static String encodeWord(String word, String charset,
 				    String encoding)
     			throws UnsupportedEncodingException {
 	return encodeWord(word, charset, encoding, true);
@@ -655,10 +655,10 @@ public class MimeUtility {
     /*
      * Encode the given string. The parameter 'encodingWord' should
      * be true if a RFC 822 "word" token is being encoded and false if a
-     * RFC 822 "text" token is being encoded. This is because the 
+     * RFC 822 "text" token is being encoded. This is because the
      * "Q" encoding defined in RFC 2047 has more restrictions when
      * encoding "word" tokens. (Sigh)
-     */ 
+     */
     private static String encodeWord(String string, String charset,
 				     String encoding, boolean encodingWord)
 			throws UnsupportedEncodingException {
@@ -686,7 +686,7 @@ public class MimeUtility {
 	}
 
 	boolean b64;
-	if (encoding.equalsIgnoreCase("B")) 
+	if (encoding.equalsIgnoreCase("B"))
 	    b64 = true;
 	else if (encoding.equalsIgnoreCase("Q"))
 	    b64 = false;
@@ -695,7 +695,7 @@ public class MimeUtility {
 			"Unknown transfer encoding: " + encoding);
 
 	StringBuffer outb = new StringBuffer(); // the output buffer
-	doEncode(string, b64, jcharset, 
+	doEncode(string, b64, jcharset,
 		 // As per RFC 2047, size of an encoded string should not
 		 // exceed 75 bytes.
 		 // 7 = size of "=?", '?', 'B'/'Q', '?', "?="
@@ -706,9 +706,9 @@ public class MimeUtility {
 	return outb.toString();
     }
 
-    private static void doEncode(String string, boolean b64, 
-		String jcharset, int avail, String prefix, 
-		boolean first, boolean encodingWord, StringBuffer buf) 
+    private static void doEncode(String string, boolean b64,
+		String jcharset, int avail, String prefix,
+		boolean first, boolean encodingWord, StringBuffer buf)
 			throws UnsupportedEncodingException {
 
 	// First find out what the length of the encoded version of
@@ -719,12 +719,12 @@ public class MimeUtility {
 	    len = BEncoderStream.encodedLength(bytes);
 	else // "Q"
 	    len = QEncoderStream.encodedLength(bytes, encodingWord);
-	
+
 	int size;
-	if ((len > avail) && ((size = string.length()) > 1)) { 
+	if ((len > avail) && ((size = string.length()) > 1)) {
 	    // If the length is greater than 'avail', split 'string'
 	    // into two and recurse.
-	    doEncode(string.substring(0, size/2), b64, jcharset, 
+	    doEncode(string.substring(0, size/2), b64, jcharset,
 		     avail, prefix, first, encodingWord, buf);
 	    doEncode(string.substring(size/2, size), b64, jcharset,
 		     avail, prefix, false, encodingWord, buf);
@@ -736,7 +736,7 @@ public class MimeUtility {
 		eos = new BEncoderStream(os);
 	    else // "Q" encoding
 		eos = new QEncoderStream(os, encodingWord);
-	    
+
 	    try { // do the encoding
 		eos.write(bytes);
 		eos.close();
@@ -760,8 +760,8 @@ public class MimeUtility {
 
     /**
      * The string is parsed using the rules in RFC 2047 and RFC 2231 for
-     * parsing an "encoded-word".  If the parse fails, a ParseException is 
-     * thrown. Otherwise, it is transfer-decoded, and then 
+     * parsing an "encoded-word".  If the parse fails, a ParseException is
+     * thrown. Otherwise, it is transfer-decoded, and then
      * charset-converted into Unicode. If the charset-conversion
      * fails, an UnsupportedEncodingException is thrown.<p>
      *
@@ -777,9 +777,9 @@ public class MimeUtility {
 	if (!eword.startsWith("=?")) // not an encoded word
 	    throw new ParseException(
 		"encoded word does not start with \"=?\": " + eword);
-	
+
 	// get charset
-	int start = 2; int pos; 
+	int start = 2; int pos;
 	if ((pos = eword.indexOf('?', start)) == -1)
 	    throw new ParseException(
 		"encoded word does not include charset: " + eword);
@@ -814,12 +814,12 @@ public class MimeUtility {
 	    String decodedWord;
 	    if (word.length() > 0) {
 		// Extract the bytes from word
-		ByteArrayInputStream bis = 
+		ByteArrayInputStream bis =
 		    new ByteArrayInputStream(ASCIIUtility.getBytes(word));
 
 		// Get the appropriate decoder
 		InputStream is;
-		if (encoding.equalsIgnoreCase("B")) 
+		if (encoding.equalsIgnoreCase("B"))
 		    is = new BASE64DecoderStream(bis);
 		else if (encoding.equalsIgnoreCase("Q"))
 		    is = new QDecoderStream(bis);
@@ -834,7 +834,7 @@ public class MimeUtility {
 		// from it.
 		int count = bis.available();
 		byte[] bytes = new byte[count];
-		// count is set to the actual number of decoded bytes 
+		// count is set to the actual number of decoded bytes
 		count = is.read(bytes, 0, count);
 
 		// Finally, convert the decoded bytes into a String using
@@ -918,7 +918,7 @@ public class MimeUtility {
      * The <code>HeaderTokenizer</code> class defines two special
      * sets of delimiters - MIME and RFC 822. <p>
      *
-     * This method is typically used during the generation of 
+     * This method is typically used during the generation of
      * RFC 822 and MIME header fields.
      *
      * @param	word	word to be quoted
@@ -947,7 +947,7 @@ public class MimeUtility {
 		int lastc = 0;
 		for (int j = i; j < len; j++) {
 		    char cc = word.charAt(j);
-		    if ((cc == '"') || (cc == '\\') || 
+		    if ((cc == '"') || (cc == '\\') ||
 			(cc == '\r') || (cc == '\n'))
 			if (cc == '\n' && lastc == '\r')
 			    ;	// do nothing, CR was already escaped
@@ -967,7 +967,7 @@ public class MimeUtility {
 	    StringBuffer sb = new StringBuffer(len + 2);
 	    sb.append('"').append(word).append('"');
 	    return sb.toString();
-	} else 
+	} else
 	    return word;
     }
 
@@ -1151,7 +1151,7 @@ public class MimeUtility {
      * @since		JavaMail 1.1
      */
     public static String mimeCharset(String charset) {
-	if (java2mime == null || charset == null) 
+	if (java2mime == null || charset == null)
 	    // no mapping table or charset param is null
 	    return charset;
 
@@ -1164,12 +1164,12 @@ public class MimeUtility {
     private static String defaultMIMECharset;
 
     /**
-     * Get the default charset corresponding to the system's current 
+     * Get the default charset corresponding to the system's current
      * default locale.  If the System property <code>mail.mime.charset</code>
      * is set, a system charset corresponding to this MIME charset will be
      * returned. <p>
-     * 
-     * @return	the default charset of the system's default locale, 
+     *
+     * @return	the default charset of the system's default locale,
      * 		as a Java charset. (NOT a MIME charset)
      * @since	JavaMail 1.1
      */
@@ -1189,16 +1189,16 @@ public class MimeUtility {
 	    }
 
 	    try {
-		defaultJavaCharset = System.getProperty("file.encoding", 
+		defaultJavaCharset = System.getProperty("file.encoding",
 							"8859_1");
 	    } catch (SecurityException sex) {
-		
+
 		class NullInputStream extends InputStream {
 		    public int read() {
 			return 0;
 		    }
 		}
-		InputStreamReader reader = 
+		InputStreamReader reader =
 			new InputStreamReader(new NullInputStream());
 		defaultJavaCharset = reader.getEncoding();
 		if (defaultJavaCharset == null)
@@ -1235,8 +1235,8 @@ public class MimeUtility {
 	try {
 	    // Use this class's classloader to load the mapping file
 	    // XXX - we should use SecuritySupport, but it's in another package
-	    InputStream is = 
-		    javax.mail.internet.MimeUtility.class.getResourceAsStream(
+	    InputStream is =
+		    com.google.code.javax.mail.internet.MimeUtility.class.getResourceAsStream(
 		    "/META-INF/javamail.charset.map");
 
 	    if (is != null) {
@@ -1335,12 +1335,12 @@ public class MimeUtility {
 		break;
 	    if (currLine.startsWith("--") && currLine.endsWith("--"))
 		// end of this table
-		break;	
+		break;
 
 	    // ignore empty lines and comments
 	    if (currLine.trim().length() == 0 || currLine.startsWith("#"))
 		continue;
-	    
+
 	    // A valid entry is of the form <key><separator><value>
 	    // where, <separator> := SPACE | HT. Parse this
 	    StringTokenizer tk = new StringTokenizer(currLine, " \t");
@@ -1356,10 +1356,10 @@ public class MimeUtility {
     static final int MOSTLY_ASCII 	= 2;
     static final int MOSTLY_NONASCII 	= 3;
 
-    /** 
+    /**
      * Check if the given string contains non US-ASCII characters.
      * @param	s	string
-     * @return		ALL_ASCII if all characters in the string 
+     * @return		ALL_ASCII if all characters in the string
      *			belong to the US-ASCII charset. MOSTLY_ASCII
      *			if more than half of the available characters
      *			are US-ASCII characters. Else MOSTLY_NONASCII.
@@ -1383,10 +1383,10 @@ public class MimeUtility {
 	return MOSTLY_NONASCII;
     }
 
-    /** 
+    /**
      * Check if the given byte array contains non US-ASCII characters.
      * @param	b	byte array
-     * @return		ALL_ASCII if all characters in the string 
+     * @return		ALL_ASCII if all characters in the string
      *			belong to the US-ASCII charset. MOSTLY_ASCII
      *			if more than half of the available characters
      *			are US-ASCII characters. Else MOSTLY_NONASCII.
@@ -1398,23 +1398,23 @@ public class MimeUtility {
 
 	for (int i=0; i < b.length; i++) {
 	    // The '&' operator automatically causes b[i] to be promoted
-	    // to an int, and we mask out the higher bytes in the int 
+	    // to an int, and we mask out the higher bytes in the int
 	    // so that the resulting value is not a negative integer.
 	    if (nonascii(b[i] & 0xff)) // non-ascii
 		non_ascii++;
 	    else
 		ascii++;
 	}
-	
+
 	if (non_ascii == 0)
 	    return ALL_ASCII;
 	if (ascii > non_ascii)
 	    return MOSTLY_ASCII;
-	
+
 	return MOSTLY_NONASCII;
     }
 
-    /** 
+    /**
      * Check if the given input stream contains non US-ASCII characters.
      * Upto <code>max</code> bytes are checked. If <code>max</code> is
      * set to <code>ALL</code>, then all the bytes available in this
@@ -1430,7 +1430,7 @@ public class MimeUtility {
      * @param	breakOnNonAscii if <code>true</code>, then terminate the
      *			the check when the first non-US-ASCII character
      *			is found.
-     * @return		ALL_ASCII if all characters in the string 
+     * @return		ALL_ASCII if all characters in the string
      *			belong to the US-ASCII charset. MOSTLY_ASCII
      *			if more than half of the available characters
      *			are US-ASCII characters. Else MOSTLY_NONASCII.
@@ -1445,7 +1445,7 @@ public class MimeUtility {
 	byte buf[] = null;
 	if (max != 0) {
 	    block = (max == ALL) ? 4096 : Math.min(max, 4096);
-	    buf = new byte[block]; 
+	    buf = new byte[block];
 	}
 	while (max != 0) {
 	    try {
@@ -1453,9 +1453,9 @@ public class MimeUtility {
 		    break;
 		int lastb = 0;
 		for (int i = 0; i < len; i++) {
-	    	    // The '&' operator automatically causes b[i] to 
+	    	    // The '&' operator automatically causes b[i] to
 		    // be promoted to an int, and we mask out the higher
-		    // bytes in the int so that the resulting value is 
+		    // bytes in the int so that the resulting value is
 		    // not a negative integer.
 		    int b = buf[i] & 0xff;
 		    if (checkEOL &&

@@ -56,7 +56,7 @@ import com.google.code.javax.mail.internet.*;
 public class message_rfc822 implements DataContentHandler {
 
     ActivationDataFlavor ourDataFlavor = new ActivationDataFlavor(
-	Message.class,
+	com.google.code.javax.mail.Message.class,
 	"message/rfc822",
 	"Message");
 
