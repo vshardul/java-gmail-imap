@@ -1,9 +1,9 @@
-#summary Example code showing how to display an Gmail inbox in thread format.
+#summary Example code showing how to display a Gmail inbox in thread format.
 #labels Featured
 
 = Displaying Gmail Thread Based View = 
 
-Displaying a Gmail inbox in the Gmail style thread based view was my primary motivator for starting this project.  On this page you will find my code for the method that I use to acquire a list of the top X most recently active Gmail threads.  I hope you find this helpful.
+Displaying a Gmail inbox in the Gmail thread based style was my primary motivator for starting this project.  On this page you will find my code for the method that I use to acquire a list of the top X most recently active Gmail threads.  I hope you find this helpful.
 
 {{{
 package tests;
