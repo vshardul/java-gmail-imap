@@ -19,13 +19,14 @@ import com.google.code.javax.mail.search.GmailThreadIDTerm;
 import com.google.code.javax.mail.search.OrTerm;
 import com.google.code.javax.mail.search.SearchTerm;
 import com.google.common.collect.LinkedHashMultimap;
-import tests.utils.Constants;
-import tests.XoauthAuthenticator;
+import tests.Constants;
+import tests.xoauth.XoauthAuthenticator;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class TestThreadFetch {
 
@@ -58,12 +59,12 @@ public class TestThreadFetch {
         try {
             folder = (IMAPFolder) store.getFolder(INBOX);
             if (folder != null) {
-                threads = searchThreads(folder, threadsToShow);
-                System.out.println(threads.size());
+                threads = searchThreads(folder, threadsToShow);                
+                TreeMap<Long, Collection<Message>> threads_sorted = new TreeMap(threads);                
                 int mLen;
                 ArrayList<Message> msgs;
                 IMAPMessage youngest, oldest;
-                for (Collection<Message> ms : threads.values()) {
+                for (Collection<Message> ms : threads_sorted.descendingMap().values()) {
                     msgs = new ArrayList<Message>(ms);
                     mLen = msgs.size();
                     youngest = (IMAPMessage) msgs.get(mLen - 1);
@@ -74,7 +75,7 @@ public class TestThreadFetch {
                     String[] labels = youngest.getGoogleMessageLabels();
                     if (labels != null) {
                         for (String label : labels) {
-                            System.out.println("* " + label);
+                            System.out.println("*" + label);
                         }
                     }
                     System.out.println("Google Thread Id:" + Long.toHexString(youngest.getGoogleMessageThreadId()));
