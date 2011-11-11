@@ -4,10 +4,10 @@
 
 Displaying a Gmail inbox in the Gmail style thread based view was my primary motivator for starting this project.  On this page you will find my code for the method that I use to acquire a list of the top X most recently active Gmail threads.  I hope you find this helpful.
 
-<code language="java">
+{{{
 package tests;
 
- import com.google.code.com.sun.mail.imap.IMAPFolder;
+import com.google.code.com.sun.mail.imap.IMAPFolder;
 import com.google.code.com.sun.mail.imap.IMAPMessage;
 import com.google.code.com.sun.mail.imap.IMAPSSLStore;
 import com.google.code.javax.mail.FetchProfile;
@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class TestThreadFetch {
 
-     private static final String INBOX = "INBOX";
+    private static final String INBOX = "INBOX";
     private static final FetchProfile fp;
     private static final FetchProfile minimalFetchProfile;
 
@@ -73,7 +73,7 @@ public class TestThreadFetch {
                     String[] labels = youngest.getGoogleMessageLabels();
                     if (labels != null) {
                         for (String label : labels) {
-                            System.out.println("`*` " + label);
+                            System.out.println("* " + label);
                         }
                     }
                     System.out.println("Google Thread Id:" + Long.toHexString(youngest.getGoogleMessageThreadId()));
@@ -88,7 +88,7 @@ public class TestThreadFetch {
 
     public static Map<Long, Collection<Message>> searchThreads(final IMAPFolder folder, final int threadsToShow) throws MessagingException {
         LinkedHashMultimap<Long, Message> threads = LinkedHashMultimap.create();
-        int messagesToFetch = threadsToShow `*` 4;
+        int messagesToFetch = threadsToShow * 4;
         boolean stop = Boolean.FALSE;
         int msgCount, first, last;
         if (folder != null) {
@@ -155,7 +155,7 @@ public class TestThreadFetch {
         return threads;
     }
 }
-</code>
+}}}
 
 If you know of a more optimal method then I would be *VERY* interested.  Please contact me or if you would please prefer post it as an answer to my Stack Overflow question on the subject (link below).
 
