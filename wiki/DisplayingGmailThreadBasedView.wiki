@@ -159,6 +159,6 @@ public class TestThreadFetch {
 }
 }}}
 
-If you know of a more optimal method then I would be *VERY* interested.  Please contact me or if you would please prefer post it as an answer to my Stack Overflow question on the subject (link below).
+If you know of a more optimal method then I would be *VERY* interested.  Please contact me directly or if you would prefer then post it as an answer to my Stack Overflow question on the subject (link below).  Thanks in advance.
 
 *[http://stackoverflow.com/questions/7322001/gmail-imap-searching-for-optimal-method-for-x-most-recently-active-gmail-thread Searching for optimal method for X most recently active Gmail threads]*
