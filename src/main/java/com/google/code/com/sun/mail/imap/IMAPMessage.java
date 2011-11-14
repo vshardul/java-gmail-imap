@@ -217,10 +217,24 @@ public class IMAPMessage extends MimeMessage {
     public String[] getGoogleMessageLabels(){
         return x_gm_labels;
     }
-
-    public void setGoogleMessageLabels(String[] x_gm_labels){
-        this.x_gm_labels = x_gm_labels;
-    }    
+	
+	public synchronized void setGoogleMessageLabels(String[] labels, boolean set)
+			throws MessagingException {
+		// Acquire MessageCacheLock, to freeze seqnum.
+		synchronized (getMessageCacheLock()) {
+			try {
+				IMAPProtocol p = getProtocol();
+				checkExpunged(); // Insure that this message is not expunged
+				p.storeGoogleMessageLabels(getSequenceNumber(), labels, set);
+			}
+			catch (ConnectionException cex) {
+				throw new FolderClosedException(folder, cex.getMessage());
+			}
+			catch (ProtocolException pex) {
+				throw new MessagingException(pex.getMessage(), pex);
+			}
+		}
+	}
     
     // expose to MessageCache
     protected void setExpunged(boolean set) {
@@ -1511,7 +1525,12 @@ public class IMAPMessage extends MimeMessage {
      * Must not be synchronized.
      */
     void _setFlags(Flags flags) {
-	this.flags = flags;
+		this.flags = flags;
+    }
+	
+	
+    public void _setGoogleMessageLabels(String[] x_gm_labels){
+        this.x_gm_labels = x_gm_labels;
     }
 
     /*

@@ -55,6 +55,8 @@ public class MessageChangedEvent extends MailEvent {
     public static final int FLAGS_CHANGED 	= 1;
     /** The message's envelope (headers, but not body) changed. */
     public static final int ENVELOPE_CHANGED 	= 2;
+	/** The message's labels changed. */
+    public static final int LABELS_CHANGED 	= 3;
 
     /**
      * The event type.
