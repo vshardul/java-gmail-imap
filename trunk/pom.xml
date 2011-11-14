@@ -5,7 +5,7 @@
 
     <groupId>com.google.code</groupId>
     <artifactId>java-gmail-imap</artifactId>
-    <version>1.4.4-gm-ext-0.2</version>
+    <version>1.4.4-gm-ext-0.3</version>
     <packaging>jar</packaging>
 
     <name>java-gmail-imap</name>
