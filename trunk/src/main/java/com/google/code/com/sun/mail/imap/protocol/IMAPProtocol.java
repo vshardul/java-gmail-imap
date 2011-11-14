@@ -1558,6 +1558,48 @@ public class IMAPProtocol extends Protocol {
 	sb.append(")"); // terminate flag_list
 	return sb.toString();
     }
+	
+	public void storeGoogleMessageLabels(MessageSet[] msgsets, String[] labels, boolean set)
+			throws ProtocolException {
+		storeGoogleMessageLabels(MessageSet.toString(msgsets), labels, set);
+	}
+
+	public void storeGoogleMessageLabels(int start, int end, String[] labels, boolean set)
+			throws ProtocolException {
+		storeGoogleMessageLabels(String.valueOf(start) + ":" + String.valueOf(end),
+				   labels, set);
+	}
+
+	public void storeGoogleMessageLabels(int msg, String[] labels, boolean set)
+			throws ProtocolException {
+		storeGoogleMessageLabels(String.valueOf(msg), labels, set);
+	}
+
+	public void storeGoogleMessageLabels(String msgset, String[] labels, boolean set)
+			throws ProtocolException {
+		Response[] r;
+
+		//create labelset string for STORE command
+		int i;
+		String labelset = "(";
+		for (i = 0; i < labels.length - 1; i++) {
+			labelset += labels[i] + " ";
+		}
+		labelset += labels[i] + ")";
+
+		if (set) {
+			r = command("STORE " + msgset + " +X-GM-LABELS "
+					+ labelset, null);
+		}
+		else {
+			r = command("STORE " + msgset + " -X-GM-LABELS "
+					+ labelset, null);
+		}
+
+		// Dispatch untagged responses
+		notifyResponseHandlers(r);
+		handleResult(r[r.length - 1]);
+	}
 
     /**
      * Issue the given search criterion on the specified message sets.

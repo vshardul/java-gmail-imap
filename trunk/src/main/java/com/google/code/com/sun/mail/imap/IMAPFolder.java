@@ -1052,6 +1052,29 @@ public class IMAPFolder extends Folder implements UIDFolder, ResponseHandler {
 	    }
 	}
     }
+	
+	public synchronized void setGoogleMessageLabels(Message[] msgs, String[] labels, boolean value)
+			throws MessagingException {
+	checkOpened();
+	
+	if (msgs.length == 0) // boundary condition
+	    return;
+
+	synchronized(messageCacheLock) {
+	    try {
+		IMAPProtocol p = getProtocol();
+		MessageSet[] ms = Utility.toMessageSet(msgs, null);
+		if (ms == null)
+		    throw new MessageRemovedException(
+					"Messages have been removed");
+		p.storeGoogleMessageLabels(ms, labels, value);
+	    } catch (ConnectionException cex) {
+		throw new FolderClosedException(this, cex.getMessage());
+	    } catch (ProtocolException pex) {
+		throw new MessagingException(pex.getMessage(), pex);
+	    }
+	}
+    }
 
     /**
      * Close this folder.
@@ -2471,8 +2494,7 @@ public class IMAPFolder extends Folder implements UIDFolder, ResponseHandler {
 		notifyMessageRemovedListeners(false, msgs);
 
 	} else if (ir.keyEquals("FETCH")) {
-	    // The only unsolicited FETCH response that makes sense
-	    // to me (for now) is FLAGS updates. Ignore any other junk.
+	    // unsolicited FLAGS updates
 	    assert ir instanceof FetchResponse : "!ir instanceof FetchResponse";
 	    FetchResponse f = (FetchResponse)ir;
 	    // Get FLAGS response, if present
@@ -2486,7 +2508,19 @@ public class IMAPFolder extends Folder implements UIDFolder, ResponseHandler {
 			    MessageChangedEvent.FLAGS_CHANGED, msg);
 		}
 	    }
-
+		
+		// X_GM_LABELS updates
+		X_GM_LABELS xglab = (X_GM_LABELS)f.getItem(X_GM_LABELS.class);
+		
+		if (xglab != null) {
+			IMAPMessage msg = getMessageBySeqNumber(f.getNumber());
+			if (msg != null) {	// should always be true
+				msg._setGoogleMessageLabels(xglab.x_gm_labels);
+				notifyMessageChangedListeners(
+			    MessageChangedEvent.LABELS_CHANGED, msg);
+			}
+		}
+		
 	} else if (ir.keyEquals("RECENT")) {
 	    // update 'recent'
 	    recent = ir.getNumber();
