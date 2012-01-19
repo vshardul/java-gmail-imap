@@ -40,8 +40,8 @@
 
 package com.google.code.com.sun.mail.handlers;
 
+import com.google.code.javax.activation.ActivationDataFlavor;
 import java.awt.datatransfer.DataFlavor;
-import javax.activation.*;
 
 /**
  * DataContentHandler for image/jpeg.

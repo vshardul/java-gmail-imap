@@ -44,9 +44,9 @@ import java.awt.datatransfer.DataFlavor;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import javax.activation.ActivationDataFlavor;
-import javax.activation.DataContentHandler;
-import javax.activation.DataSource;
+import com.google.code.javax.activation.ActivationDataFlavor;
+import com.google.code.javax.activation.DataContentHandler;
+import com.google.code.javax.activation.DataSource;
 import com.google.code.javax.mail.internet.ContentType;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;

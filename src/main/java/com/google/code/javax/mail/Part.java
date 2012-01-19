@@ -42,7 +42,7 @@ package com.google.code.javax.mail;
 
 import java.io.*;
 import java.util.Enumeration;
-import javax.activation.DataHandler;
+import com.google.code.javax.activation.DataHandler;
 
 /**
  * The <code>Part</code> interface is the common base interface for 
