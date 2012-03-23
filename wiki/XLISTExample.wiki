@@ -18,3 +18,45 @@ To use the XLIST command you would do something like this:
  }
 ...
 }}}
+
+this will result in something like:
+
+{{{
+
+[Gmail]
+\Noselect
+\HasChildren
+
+[Gmail]/All Mail
+\HasNoChildren
+\AllMail
+
+[Gmail]/Drafts
+\HasChildren
+\HasNoChildren
+\Drafts
+
+[Gmail]/Important
+\HasNoChildren
+\Important
+
+[Gmail]/Sent Mail
+\HasNoChildren
+\Sent
+
+[Gmail]/Spam
+\HasNoChildren
+\Spam
+
+[Gmail]/Starred
+\HasNoChildren
+\Starred
+
+[Gmail]/Trash
+\HasChildren
+\HasNoChildren
+\Trash
+
+}}}
+
+I do not know why Trash and Drafts has both {{{HasChildren}}} and {{{HasNoChildren}}} attributes!
