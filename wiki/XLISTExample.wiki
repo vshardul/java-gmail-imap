@@ -19,7 +19,7 @@ To use the XLIST command you would do something like this:
 ...
 }}}
 
-this will result in something like:
+this might result in:
 
 {{{
 
