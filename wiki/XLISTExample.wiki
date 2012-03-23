@@ -59,4 +59,4 @@ this might result in:
 
 }}}
 
-I do not know why Trash and Drafts has both {{{HasChildren}}} and {{{HasNoChildren}}} attributes!
+I do not know why Trash and Drafts folders have both {{{HasChildren}}} and {{{HasNoChildren}}} attributes!
