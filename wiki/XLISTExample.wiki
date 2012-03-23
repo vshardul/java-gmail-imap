@@ -27,35 +27,35 @@ this might result in:
 \Noselect
 \HasChildren
 
-[Gmail]/All Mail
-\HasNoChildren
-\AllMail
-
-[Gmail]/Drafts
+[Gmail]/Borradores
 \HasChildren
 \HasNoChildren
 \Drafts
 
-[Gmail]/Important
+[Gmail]/Destacados
+\HasNoChildren
+\Starred
+
+[Gmail]/Enviados
+\HasNoChildren
+\Sent
+
+[Gmail]/Importante
 \HasNoChildren
 \Important
 
-[Gmail]/Sent Mail
+[Gmail]/Papelera
+\HasChildren
 \HasNoChildren
-\Sent
+\Trash
 
 [Gmail]/Spam
 \HasNoChildren
 \Spam
 
-[Gmail]/Starred
+[Gmail]/Todos
 \HasNoChildren
-\Starred
-
-[Gmail]/Trash
-\HasChildren
-\HasNoChildren
-\Trash
+\AllMail
 
 }}}
 
