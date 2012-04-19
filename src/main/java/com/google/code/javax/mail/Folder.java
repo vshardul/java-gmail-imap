@@ -307,13 +307,7 @@ public abstract class Folder {
     public Folder[] listSubscribed(String pattern) throws MessagingException {
 	return list(pattern);
     }
-    
-    public abstract Folder[] xlist(String pattern) throws MessagingException;
 
-    public Folder[] xlist() throws MessagingException {
-	return xlist("%");
-    }    
-    
     /**
      * Convenience method that returns the list of folders under this
      * Folder. This method just calls the <code>list(String pattern)</code>

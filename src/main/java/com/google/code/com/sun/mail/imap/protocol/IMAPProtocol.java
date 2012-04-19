@@ -972,16 +972,6 @@ public class IMAPProtocol extends Protocol {
 	return doList("LSUB", ref, pattern);
     }
 
-    /**
-     * XLIST Command.
-     *
-     */
-    public ListInfo[] xlist(String ref, String pattern)
-			throws ProtocolException {
-	return doList("XLIST", ref, pattern);
-    }
-    
-    
     private ListInfo[] doList(String cmd, String ref, String pat)
 			throws ProtocolException {
 	// encode the mbox as per RFC2060
