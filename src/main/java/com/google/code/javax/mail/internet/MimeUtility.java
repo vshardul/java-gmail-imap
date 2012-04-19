@@ -40,8 +40,9 @@
 
 package com.google.code.javax.mail.internet;
 
+import com.google.code.javax.activation.DataSource;
+import com.google.code.javax.activation.DataHandler;
 import com.google.code.javax.mail.MessagingException;
-import javax.activation.*;
 import java.util.*;
 import java.io.*;
 import com.google.code.com.sun.mail.util.*;
@@ -1237,7 +1238,7 @@ public class MimeUtility {
 	    // XXX - we should use SecuritySupport, but it's in another package
 	    InputStream is =
 		    com.google.code.javax.mail.internet.MimeUtility.class.getResourceAsStream(
-		    "/META-INF/javamail.charset.map");
+		    "/META-INF/java-gmail-imap.charset.map");
 
 	    if (is != null) {
 		try {

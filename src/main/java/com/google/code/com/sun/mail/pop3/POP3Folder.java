@@ -584,4 +584,9 @@ public class POP3Folder extends Folder {
     TempFile getFileCache() {
 	return fileCache;
     }
+
+    @Override
+    public Folder[] xlist(String pattern) throws MessagingException {
+        throw new MethodNotSupportedException("xlist");
+    }
 }

@@ -576,6 +576,49 @@ public class IMAPFolder extends Folder implements UIDFolder, ResponseHandler {
     public Folder[] list(String pattern) throws MessagingException {
 	return doList(pattern, false);
     }
+    
+    public Folder[] xlist(final String pattern) throws MessagingException {
+	checkExists(); // insure that this folder does exist.
+	
+	// Why waste a roundtrip to the server?
+	if (attributes != null && !isDirectory())
+	    return new Folder[0];
+
+	final char c = getSeparator();
+
+	ListInfo[] li = (ListInfo[])doCommandIgnoreFailure(
+	    new ProtocolCommand() {
+		public Object doCommand(IMAPProtocol p)
+			throws ProtocolException {
+			return p.xlist("", fullName + c + pattern);
+		}
+	    });
+
+	if (li == null)
+	    return new Folder[0];
+
+	/*
+	 * The UW based IMAP4 servers (e.g. SIMS2.0) include
+	 * current folder (terminated with the separator), when
+	 * the LIST pattern is '%' or '*'. i.e, <LIST "" mail/%> 
+	 * returns "mail/" as the first LIST response.
+	 *
+	 * Doesn't make sense to include the current folder in this
+	 * case, so we filter it out. Note that I'm assuming that
+	 * the offending response is the *first* one, my experiments
+	 * with the UW & SIMS2.0 servers indicate that .. 
+	 */
+	int start = 0;
+	// Check the first LIST response.
+	if (li.length > 0 && li[0].name.equals(fullName + c)) 
+	    start = 1; // start from index = 1
+
+	IMAPFolder[] folders = new IMAPFolder[li.length - start];
+	IMAPStore st = (IMAPStore)store;
+	for (int i = start; i < li.length; i++)
+	    folders[i-start] = st.newIMAPFolder(li[i]);
+	return folders;        
+    }
 
     /**
      * List all subscribed subfolders matching the specified pattern.
