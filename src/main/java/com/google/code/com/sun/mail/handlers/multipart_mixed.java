@@ -40,11 +40,9 @@
 
 package com.google.code.com.sun.mail.handlers;
 
-import com.google.code.javax.activation.ActivationDataFlavor;
-import com.google.code.javax.activation.DataContentHandler;
-import com.google.code.javax.activation.DataSource;
 import java.io.*;
 import java.awt.datatransfer.DataFlavor;
+import javax.activation.*;
 import com.google.code.javax.mail.MessagingException;
 import com.google.code.javax.mail.internet.*;
 

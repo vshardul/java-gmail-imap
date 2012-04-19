@@ -40,7 +40,6 @@
 
 package com.google.code.com.sun.mail.imap;
 
-import com.google.code.javax.activation.DataHandler;
 import java.util.Date;
 import java.io.*;
 import java.util.Enumeration;
@@ -50,6 +49,7 @@ import java.util.Locale;
 
 import com.google.code.javax.mail.*;
 import com.google.code.javax.mail.internet.*;
+import javax.activation.*;
 
 import com.google.code.com.sun.mail.util.*;
 import com.google.code.com.sun.mail.iap.*;
@@ -217,24 +217,10 @@ public class IMAPMessage extends MimeMessage {
     public String[] getGoogleMessageLabels(){
         return x_gm_labels;
     }
-	
-	public synchronized void setGoogleMessageLabels(String[] labels, boolean set)
-			throws MessagingException {
-		// Acquire MessageCacheLock, to freeze seqnum.
-		synchronized (getMessageCacheLock()) {
-			try {
-				IMAPProtocol p = getProtocol();
-				checkExpunged(); // Insure that this message is not expunged
-				p.storeGoogleMessageLabels(getSequenceNumber(), labels, set);
-			}
-			catch (ConnectionException cex) {
-				throw new FolderClosedException(folder, cex.getMessage());
-			}
-			catch (ProtocolException pex) {
-				throw new MessagingException(pex.getMessage(), pex);
-			}
-		}
-	}
+
+    public void setGoogleMessageLabels(String[] x_gm_labels){
+        this.x_gm_labels = x_gm_labels;
+    }    
     
     // expose to MessageCache
     protected void setExpunged(boolean set) {
@@ -1525,12 +1511,7 @@ public class IMAPMessage extends MimeMessage {
      * Must not be synchronized.
      */
     void _setFlags(Flags flags) {
-		this.flags = flags;
-    }
-	
-	
-    public void _setGoogleMessageLabels(String[] x_gm_labels){
-        this.x_gm_labels = x_gm_labels;
+	this.flags = flags;
     }
 
     /*

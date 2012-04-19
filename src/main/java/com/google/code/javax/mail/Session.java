@@ -50,6 +50,7 @@ import java.util.Properties;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
+import javax.activation.*;
 
 import com.google.code.com.sun.mail.util.LineInputStream;
 
@@ -63,18 +64,18 @@ import com.google.code.com.sun.mail.util.LineInputStream;
  * implement the <code>Store</code>, <code>Transport</code>, and related
  * classes.  The protocol providers are configured using the following files:
  * <ul>
- *  <li> <code>java-gmail-imap.providers</code> and
- * 	<code>java-gmail-imap.default.providers</code> </li>
- *  <li> <code>java-gmail-imap.address.map</code> and
- * 	<code>java-gmail-imap.default.address.map</code> </li>
+ *  <li> <code>javamail.providers</code> and
+ * 	<code>javamail.default.providers</code> </li>
+ *  <li> <code>javamail.address.map</code> and
+ * 	<code>javamail.default.address.map</code> </li>
  * </ul>
  * <p>
- * Each <code>java-gmail-imap.</code><i>X</i> resource file is searched for using
+ * Each <code>javamail.</code><i>X</i> resource file is searched for using
  * three methods in the following order:
  * <ol>
- *  <li> <code>java.home/lib/java-gmail-imap.</code><i>X</i> </li>
- *  <li> <code>META-INF/java-gmail-imap.</code><i>X</i> </li>
- *  <li> <code>META-INF/java-gmail-imap.default.</code><i>X</i> </li>
+ *  <li> <code>java.home/lib/javamail.</code><i>X</i> </li>
+ *  <li> <code>META-INF/javamail.</code><i>X</i> </li>
+ *  <li> <code>META-INF/javamail.default.</code><i>X</i> </li>
  * </ol>
  * <p>
  * The first method allows the user to include their own version of the
@@ -82,7 +83,7 @@ import com.google.code.com.sun.mail.util.LineInputStream;
  * <code>java.home</code> property points.  The second method allows an
  * application that uses the JavaMail APIs to include their own resource
  * files in their application's or jar file's <code>META-INF</code>
- * directory.  The <code>java-gmail-imap.default.</code><i>X</i> default files
+ * directory.  The <code>javamail.default.</code><i>X</i> default files
  * are part of the JavaMail <code>mail.jar</code> file. <p>
  *
  * File location depends upon how the <code>ClassLoader</code> method
@@ -104,8 +105,8 @@ import com.google.code.com.sun.mail.util.LineInputStream;
  * do not override, the default files included with the JavaMail APIs.
  * This means that all entries in all files loaded will be available. <p>
  *
- * <b><code>java-gmail-imap.providers</code></b> and
- * <b><code>java-gmail-imap.default.providers</code></b><p>
+ * <b><code>javamail.providers</code></b> and
+ * <b><code>javamail.default.providers</code></b><p>
  *
  * These resource files specify the stores and transports that are
  * available on the system, allowing an application to "discover" what
@@ -146,15 +147,15 @@ import com.google.code.com.sun.mail.util.LineInputStream;
  * </tr>
  * </table><p>
  *
- * Here's an example of <code>META-INF/java-gmail-imap.default.providers</code>
+ * Here's an example of <code>META-INF/javamail.default.providers</code>
  * file contents:
  * <pre>
- * protocol=imap; type=store; class=com.google.code.com.sun.mail.imap.IMAPStore; vendor=Sun Microsystems, Inc.;
- * protocol=smtp; type=transport; class=com.google.code.com.sun.mail.smtp.SMTPTransport; vendor=Sun Microsystems, Inc.;
+ * protocol=imap; type=store; class=com.sun.mail.imap.IMAPStore; vendor=Sun Microsystems, Inc.;
+ * protocol=smtp; type=transport; class=com.sun.mail.smtp.SMTPTransport; vendor=Sun Microsystems, Inc.;
  * </pre><p>
  *
- * <b><code>java-gmail-imap.address.map</code></b> and
- * <b><code>java-gmail-imap.default.address.map</code></b><p>
+ * <b><code>javamail.address.map</code></b> and
+ * <b><code>javamail.default.address.map</code></b><p>
  *
  * These resource files map transport address types to the transport
  * protocol.  The <code>getType</code> method of
@@ -206,7 +207,7 @@ public final class Session {
 	    debug = true;
 
 	if (debug)
-	    pr("DEBUG: JavaMail version (java-gmail-imap)" + Version.version);
+	    pr("DEBUG: JavaMail version " + Version.version);
 
 	// get the Class associated with the Authenticator
 	Class cl;
@@ -890,18 +891,18 @@ public final class Session {
 	try {
 	    String res = System.getProperty("java.home") +
 				File.separator + "lib" +
-				File.separator + "java-gmail-imap.providers";
+				File.separator + "javamail.providers";
 	    loadFile(res, loader);
 	} catch (SecurityException sex) {
 	    if (debug)
 		pr("DEBUG: can't get java.home: " + sex);
 	}
 
-	// load the META-INF/java-gmail-imap.providers file supplied by an application
-	loadAllResources("META-INF/java-gmail-imap.providers", cl, loader);
+	// load the META-INF/javamail.providers file supplied by an application
+	loadAllResources("META-INF/javamail.providers", cl, loader);
 
-	// load default META-INF/java-gmail-imap.default.providers from mail.jar file
-	loadResource("/META-INF/java-gmail-imap.default.providers", cl, loader);
+	// load default META-INF/javamail.default.providers from mail.jar file
+	loadResource("/META-INF/javamail.default.providers", cl, loader);
 
 	if (providers.size() == 0) {
 	    if (debug)
@@ -1016,17 +1017,17 @@ public final class Session {
 	    }
 	};
 
-	// load default META-INF/java-gmail-imap.default.address.map from mail.jar
-	loadResource("/META-INF/java-gmail-imap.default.address.map", cl, loader);
+	// load default META-INF/javamail.default.address.map from mail.jar
+	loadResource("/META-INF/javamail.default.address.map", cl, loader);
 
-	// load the META-INF/java-gmail-imap.address.map file supplied by an app
-	loadAllResources("META-INF/java-gmail-imap.address.map", cl, loader);
+	// load the META-INF/javamail.address.map file supplied by an app
+	loadAllResources("META-INF/javamail.address.map", cl, loader);
 
-	// load system-wide java-gmail-imap.address.map from the <java.home>/lib dir
+	// load system-wide javamail.address.map from the <java.home>/lib dir
 	try {
 	    String res = System.getProperty("java.home") +
 				File.separator + "lib" +
-				File.separator + "java-gmail-imap.address.map";
+				File.separator + "javamail.address.map";
 	    loadFile(res, loader);
 	} catch (SecurityException sex) {
 	    if (debug)

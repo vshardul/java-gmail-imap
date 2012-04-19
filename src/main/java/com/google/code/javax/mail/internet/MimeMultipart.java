@@ -40,8 +40,8 @@
 
 package com.google.code.javax.mail.internet;
 
-import com.google.code.javax.activation.DataSource;
 import com.google.code.javax.mail.*;
+import javax.activation.*;
 import java.util.*;
 import java.io.*;
 import com.google.code.com.sun.mail.util.LineOutputStream;
