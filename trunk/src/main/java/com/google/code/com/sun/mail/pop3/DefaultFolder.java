@@ -142,4 +142,8 @@ public class DefaultFolder extends Folder {
     public Message[] expunge() throws MessagingException {
 	throw new MethodNotSupportedException("expunge");	
     }
+
+    public Folder[] xlist(String pattern) throws MessagingException {
+        throw new MethodNotSupportedException("XLIST supported yet.");
+    }
 }

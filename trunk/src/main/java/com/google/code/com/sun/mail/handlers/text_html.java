@@ -40,7 +40,7 @@
 
 package com.google.code.com.sun.mail.handlers;
 
-import javax.activation.ActivationDataFlavor;
+import com.google.code.javax.activation.ActivationDataFlavor;
 
 /**
  * DataContentHandler for text/html.
