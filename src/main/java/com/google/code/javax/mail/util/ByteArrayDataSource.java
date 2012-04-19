@@ -40,8 +40,8 @@
 
 package com.google.code.javax.mail.util;
 
-import com.google.code.javax.activation.DataSource;
 import java.io.*;
+import javax.activation.*;
 import com.google.code.javax.mail.internet.*;
 
 /**

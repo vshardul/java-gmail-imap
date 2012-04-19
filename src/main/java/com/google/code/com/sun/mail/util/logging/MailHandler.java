@@ -41,9 +41,6 @@
 
 package com.google.code.com.sun.mail.util.logging;
 
-import com.google.code.javax.activation.DataSource;
-import com.google.code.javax.activation.DataHandler;
-import com.google.code.javax.activation.FileTypeMap;
 import java.io.*;
 import java.lang.reflect.*;
 import java.net.InetAddress;
@@ -53,6 +50,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Properties;
 import java.util.logging.*;
+import javax.activation.*;
 import com.google.code.javax.mail.*;
 import com.google.code.javax.mail.internet.*;
 import com.google.code.javax.mail.util.ByteArrayDataSource;

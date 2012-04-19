@@ -40,7 +40,6 @@
 
 package com.google.code.com.sun.mail.imap;
 
-import com.google.code.javax.activation.DataHandler;
 import java.util.Date;
 import java.io.*;
 import java.util.Enumeration;
@@ -50,6 +49,7 @@ import java.util.Locale;
 
 import com.google.code.javax.mail.*;
 import com.google.code.javax.mail.internet.*;
+import javax.activation.*;
 
 import com.google.code.com.sun.mail.util.*;
 import com.google.code.com.sun.mail.iap.*;
