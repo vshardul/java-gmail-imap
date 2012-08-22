@@ -1,8 +1,6 @@
 = Displaying Gmail Thread Based View - Improved = 
 
-I had a working method to [http://code.google.com/p/java-gmail-imap/wiki/DisplayingGmailThreadBasedView display a Gmail style thread based inbox] but I was sure that that must be a way that the performance of it could be improved.
-
-A helpful user suggested a way that I might improve the performance of my thread based view.
+I had a working method to [http://code.google.com/p/java-gmail-imap/wiki/DisplayingGmailThreadBasedView display a Gmail style thread based inbox] but I was sure that that must be a way that the performance of it could be improved.  A helpful java-gmail-imap user may a very useful suggestion on how I could improve the efficiency of the downloads.
 
 Usually in `JavaMail` messages obtained from a folder are light-weight empty references to the actual messages.  Any required attributes are populated "on-demand" and therefore require a further request/response round trip to the mail server.
 
