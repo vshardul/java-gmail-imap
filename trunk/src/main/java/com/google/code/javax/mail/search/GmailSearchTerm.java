@@ -55,9 +55,9 @@ public abstract class GmailSearchTerm extends SearchTerm {
      */
     @Override
     public boolean equals(Object obj) {
-	if (!(obj instanceof StringTerm))
+	if (!(obj instanceof GmailSearchTerm))
 	    return false;
-	StringTerm st = (StringTerm)obj;
+	GmailSearchTerm st = (GmailSearchTerm)obj;
 	if (ignoreCase)
 	    return st.pattern.equalsIgnoreCase(this.pattern) &&
 		    st.ignoreCase == this.ignoreCase;
