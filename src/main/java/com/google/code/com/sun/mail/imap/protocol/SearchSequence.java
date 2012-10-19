@@ -134,7 +134,9 @@ public class SearchSequence {
 	    return isAscii(((StringTerm)term).getPattern());
 	else if (term instanceof AddressTerm)
 	    return isAscii(((AddressTerm)term).getAddress().toString());
-	
+	else if (term instanceof GmailSearchTerm)
+	    return isAscii(((GmailSearchTerm)term).getPattern().toString());
+        	
 	// Any other term returns true.
 	return true;
     }
