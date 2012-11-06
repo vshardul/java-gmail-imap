@@ -32,7 +32,7 @@ The "Client name" will be something like *484313896601.apps.gserviceaccount.com*
 
 http://java-gmail-imap.googlecode.com/svn/wiki/images/manage_api.gif
 
-Now you can create the Java code.  Firstly you need to acquire the [http://code.google.com/p/google-mail-oauth2-tools/ Google Mail OAuth2 Tools] ([http://google-mail-oauth2-tools.googlecode.com/files/oauth2-java-sample-20120904.zip oauth2-java-sample-20120904.zip]), I unpacked the source files from this (OAuth2Authenticator.java, OAuth2SaslClient.java and OAuth2SaslClientFactory.java) into my Maven project.  The only dependency of these classes is on JavaMail (it can easily be re-written to use this project's code).
+Now you can create the Java code.  Firstly you need to acquire the [http://code.google.com/p/google-mail-oauth2-tools/ Google Mail OAuth2 Tools] ([http://google-mail-oauth2-tools.googlecode.com/files/oauth2-java-sample-20120904.zip oauth2-java-sample-20120904.zip]), I unpacked the source files from this (OAuth2Authenticator.java, OAuth2SaslClient.java and OAuth2SaslClientFactory.java) into my Maven project.  The only dependency of these classes is on {{{JavaMail}}} (it can easily be re-written to use this project's code).
 
 Here is a snippet of my Maven pom.xml file containing the code dependencies.
 
