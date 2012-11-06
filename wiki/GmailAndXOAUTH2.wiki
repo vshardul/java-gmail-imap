@@ -1,10 +1,13 @@
-On Google Apps for Business and Education domains it is possible to access the Gmail IMAP account of any domain user using two-legged OAuth 1.0a  (e.g. domain-wide delegation of authority using 
+Created: 6th November 2012
+
+=How to achieve domain-wide delegation of authority on Gmail with OAuth 2.0=
+
+On Google Apps for Business and Education domains it is currently possible to access the Gmail IMAP account of any domain user using two-legged OAuth 1.0a  (e.g. domain-wide delegation of authority using 
 [https://developers.google.com/google-apps/gmail/oauth_protocol deprecated XOAUTH protocol] and [http://code.google.com/p/google-mail-xoauth-tools/ Google Mail Xoauth Tools]).  The method currently still works but it is being deprecated.
 
-In order to bring Gmail in line with the other Google API services that use OAuth 2.0, a new protocol XOAUTH2 was introduced (See: [http://googledevelopers.blogspot.co.uk/2012/09/adding-oauth-20-support-for-imapsmtp.html Adding OAuth 2.0 support for IMAP/SMTP and XMPP to enhance auth security], [https://developers.google.com/google-apps/gmail/xoauth2_protocol XOAUTH2 Mechanism]).
+In order to bring Gmail in line with the other Google API services the Gmail servers have been updated to support OAuth 2.0, a new protocol XOAUTH2 has been introduced (See: [http://googledevelopers.blogspot.co.uk/2012/09/adding-oauth-20-support-for-imapsmtp.html Adding OAuth 2.0 support for IMAP/SMTP and XMPP to enhance auth security], [https://developers.google.com/google-apps/gmail/xoauth2_protocol XOAUTH2 Mechanism]).
 
 Along with this is a new set of tools, [http://code.google.com/p/google-mail-oauth2-tools/ Google Mail OAuth2 Tools].
-
 
 [http://google-mail-oauth2-tools.googlecode.com/files/oauth2-java-sample-20120904.zip oauth2-java-sample-20120904.zip] 
 
