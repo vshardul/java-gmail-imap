@@ -18,7 +18,7 @@ Firstly you need to visit the Google API Console and create a Client ID.  You wi
 
 http://java-gmail-imap.googlecode.com/svn/wiki/images/SelectApplicationType.png
 
-Make a note of the Client name, email address and save the private key somewhere - you will need these later.
+Make a note of the *Client ID*, *email address* and save the *private key* somewhere - you will need these later.
 
 http://java-gmail-imap.googlecode.com/svn/wiki/images/PublicPrivateKeys.png
 
