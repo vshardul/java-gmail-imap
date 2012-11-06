@@ -12,9 +12,11 @@ In order to bring Gmail in line with the other Google API services the Gmail ser
 
 Along with this new protocol is a new set of tools, [http://code.google.com/p/google-mail-oauth2-tools/ Google Mail OAuth2 Tools].
 
+The following describes how to use XOAUTH2 and OAuth 2.0 to achieve the equivalent of 2-legged OAuth.
+
 ==Google APIs console==
 
-Firstly you need to visit the Google API Console and create a Client ID.  You will need to create the Client as a [https://code.google.com/p/google-api-java-client/wiki/OAuth2#Service_Accounts Service account]
+Firstly you need to visit the [https://code.google.com/apis/console/ Google API Console] and create a Client ID.  You will need to create the Client as a [https://code.google.com/p/google-api-java-client/wiki/OAuth2#Service_Accounts Service account]
 
 http://java-gmail-imap.googlecode.com/svn/wiki/images/SelectApplicationType.png
 
