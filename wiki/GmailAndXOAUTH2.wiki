@@ -1,3 +1,4 @@
+#labels Featured
 Created: 6th November 2012
 
 =How to achieve domain-wide delegation of authority on Gmail with OAuth 2.0=
