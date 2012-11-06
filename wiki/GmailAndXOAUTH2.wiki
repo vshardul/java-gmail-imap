@@ -95,7 +95,7 @@ public class Test {
 
         OAuth2Authenticator.initialize();
 
-        IMAPStore imapSslStore = OAuth2Authenticator.connectToImap("imap.googlemail.com",
+        IMAPStore imapSslStore = OAuth2Authenticator.connectToImap("imap.gmail.com",
                 993,
                 email,
                 authToken,
