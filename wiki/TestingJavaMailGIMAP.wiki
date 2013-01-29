@@ -34,6 +34,8 @@ However, I'm not convinced the labels returned from the Gmail server are being p
 
 The culprit for the label issue in {{{JavaMail}}} 1.4.6-SNAPSHOT seems to be labels are being parsed using IMAPResponse's readSimpleList().  In this project (java-gmail-imap) I added a new method to IMAPResponse called [https://code.google.com/p/java-gmail-imap/source/browse/trunk/src/main/java/com/google/code/com/sun/mail/imap/protocol/IMAPResponse.java readAtomStringList()] which I use to parse Gmail labels.
 
+Reported to the {{{JavaMail}}} mailing list, [http://kenai.com/projects/javamail/forums/forum/topics/532709-JavaMail-1-4-6-SNAPSHOT-Gmail-getLabels-problems JAVAMAIL 1.4.6-SNAPSHOT, GMAIL GETLABELS PROBLEMS].
+
 {{{
 package com.example;
 
