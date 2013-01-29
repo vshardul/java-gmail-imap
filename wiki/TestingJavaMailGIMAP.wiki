@@ -32,7 +32,7 @@ My experience is that the new experimental Gmail support is quite easy to use.
 
 However, I'm not convinced the labels returned from the Gmail server are being parsed correctly yet. _getLabels_ often returns spurious null strings and is often missing labels. 
 
-The culprit for the label issue in {{{JavaMail}}} 1.4.6-SNAPSHOT seems to be labels are being parsed using IMAPResponse's readSimpleList.  In this project (java-gmail-imap) I added a new method to IMAPResponse called readAtomStringList which I use to parse Gmail labels.
+The culprit for the label issue in {{{JavaMail}}} 1.4.6-SNAPSHOT seems to be labels are being parsed using IMAPResponse's readSimpleList().  In this project (java-gmail-imap) I added a new method to IMAPResponse called [https://code.google.com/p/java-gmail-imap/source/browse/trunk/src/main/java/com/google/code/com/sun/mail/imap/protocol/IMAPResponse.java readAtomStringList()] which I use to parse Gmail labels.
 
 {{{
 package com.example;
