@@ -28,9 +28,9 @@ In you Maven pom.xml you need something like:
   </dependencies>
 }}}
 
-My experience is that the new experimental Gmail support is wuite easy to use. 
+My experience is that the new experimental Gmail support is quite easy to use. 
 
-However, I'm not convinced the labels are working correctly yet. _getLabels_ returns null Strings and only labels that are prefixed with a back slash (\). 
+However, I'm not convinced the labels are working correctly yet. _getLabels_ often returns spurious null Strings and only returns the special labels (those that in IMAP would be prefixed with a back slash (\)). 
 
 {{{
 package com.example;
