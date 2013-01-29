@@ -30,7 +30,7 @@ In you Maven pom.xml you need something like:
 
 My experience is that the new experimental Gmail support is quite easy to use. 
 
-However, I'm not convinced the labels are working correctly yet. _getLabels_ often returns spurious null Strings and only returns the special labels (those that in IMAP would be prefixed with a back slash (\)). 
+However, I'm not convinced the labels returned from the Gmail server are being parsed correctly yet. _getLabels_ often returns spurious null strings and is often missing labels. 
 
 {{{
 package com.example;
