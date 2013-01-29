@@ -1,27 +1,28 @@
-# Investigating JavaMail 1.4.6 snapshot support for Gmail extensions
+# Investigating {{{JavaMail}}} 1.4.6 snapshot support for Gmail extensions
 
 In you Maven pom.xml you need something like:
 
-<code language="xml">
-   <repositories>
-        <repository>
-            <id>Java.net snapshots</id>            <url>https://maven.java.net/content/repositories/snapshots/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>  
-    </repositories>
+{{{
+  <repositories>
+    <repository>
+      <id>Java.net snapshots</id>  
+      <url>https://maven.java.net/content/repositories/snapshots/</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>  
+  </repositories>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>javax.mail</artifactId>
-            <version>1.4.6-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>gimap</artifactId>
-            <version>1.4.6-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
-</code>
+  <dependencies>
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>javax.mail</artifactId>
+      <version>1.4.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>gimap</artifactId>
+      <version>1.4.6-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+}}}
