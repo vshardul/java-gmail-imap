@@ -1,3 +1,4 @@
+#labels Featured
 # Investigating {{{JavaMail}}} 1.4.6 snapshot support for Gmail extensions
 
 In you Maven pom.xml you need something like:
@@ -27,7 +28,9 @@ In you Maven pom.xml you need something like:
   </dependencies>
 }}}
 
-Quite easy to use although I'm not convinced the labels are working correctly?
+My experience is that the new experimental Gmail support is wuite easy to use. 
+
+However, I'm not convinced the labels are working correctly yet.
 
 {{{
 package com.example;
