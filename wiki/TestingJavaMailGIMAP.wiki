@@ -26,3 +26,76 @@ In you Maven pom.xml you need something like:
     </dependency>
   </dependencies>
 }}}
+
+Quite easy to use although I'm not convinced the labels are working correctly?
+
+{{{
+package com.example;
+
+import com.sun.mail.gimap.GmailFolder;
+import com.sun.mail.gimap.GmailMessage;
+import com.sun.mail.gimap.GmailSSLStore;
+import java.util.Properties;
+import javax.mail.FetchProfile;
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+
+public class App {
+
+    public static void main(String[] args) throws MessagingException {
+        Properties props = System.getProperties();
+        props.setProperty("mail.store.protocol", "gimaps");
+        //props.setProperty("mail.debug", "true");
+
+        GmailSSLStore store = null;
+        GmailFolder folder = null;
+        try {
+            Session session = Session.getDefaultInstance(props, null);
+            store = (GmailSSLStore) session.getStore("gimaps");
+            store.connect(Constants.getUsername(), Constants.getPassword());
+            folder = (GmailFolder) store.getFolder("INBOX");
+            folder.open(Folder.READ_ONLY);
+            Message[] ms = folder.getMessages();
+            FetchProfile fp = new FetchProfile();
+            fp.add(GmailFolder.FetchProfileItem.MSGID);
+            fp.add(GmailFolder.FetchProfileItem.THRID);
+            fp.add(GmailFolder.FetchProfileItem.LABELS);
+
+            folder.fetch(ms, fp);
+
+            GmailMessage gm;
+            String[] labels;
+
+            for (Message m : ms) {
+                gm = (GmailMessage) m;
+                System.out.println(gm.getMsgId());
+
+                // Hex version - useful for linking to Gmail
+                //System.out.println(Long.toHexString(gm.getMsgId()));
+
+                System.out.println(gm.getThrId());
+
+                labels = gm.getLabels();
+                if (labels != null) {
+                    for (String label : labels) {
+                        if (label != null) {
+                            System.out.println("Label: " + label);
+                        }
+                    }
+                }
+            }
+        } catch (MessagingException ex) {
+        } finally {
+            if (folder != null && folder.isOpen()) {
+                folder.close(true);
+            }
+            if (store != null) {
+                store.close();
+            }
+        }
+
+    }
+}
+}}}
